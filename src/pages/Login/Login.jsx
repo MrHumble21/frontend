@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import animationData from "./loginAbdulboriy.json";
 import Lottie from "react-lottie";
 import axios from "axios";
-import {Link, redirect} from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
-import {BASE_URL} from "../../extras/frontend_constants";
+import { BASE_URL } from "../../extras/frontend_constants";
 
 const defaultOptions = {
   loop: true,
@@ -74,7 +74,7 @@ function Login() {
                 password,
               };
               await axios
-                .post(BASE_URL+"/login", userCredentials)
+                .post(BASE_URL + "/login", userCredentials)
                 .then((response) => {
                   if (response.status === 200) {
                     if (response.data.user[0].role === "Admin") {
@@ -87,7 +87,7 @@ function Login() {
                         JSON.stringify(response.data.user[0])
                       );
                       setIsLoading(false);
-                      return redirect("/Admin");
+                      window.location.href = "/Admin";
                     } else {
                       localStorage.setItem("userObject", response.data.user[0]);
                       localStorage.setItem(
@@ -95,8 +95,7 @@ function Login() {
                         JSON.stringify(response.data.user[0])
                       );
                       setIsLoading(false);
-                      return redirect("/collections");
-
+                      window.location.href = "/collections";
                     }
                   }
                 })

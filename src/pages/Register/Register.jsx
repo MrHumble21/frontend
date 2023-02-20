@@ -177,11 +177,10 @@ function Registration() {
                       "userObject",
                       JSON.stringify(response.data.newUser)
                     );
-                    // const us = localStorage.getItem("userObject");
                     console.log(response);
                     //dadsdsa
                     setIsLoading(false);
-                    // window.location.href = "/collections";
+                    window.location.href = "/collections";
                   }
                 })
                 .catch((error) => {

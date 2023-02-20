@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./css.css";
 import { AiFillDelete, AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { BsBookmarkDash, BsFillBookmarkStarFill } from "react-icons/bs";
-import {BASE_URL} from "../../extras/frontend_constants";
+import { BASE_URL } from "../../extras/frontend_constants";
 const CustomCollectionItem = ({
   id,
   image,
@@ -49,7 +49,7 @@ const CustomCollectionItem = ({
             );
             if (res) {
               axios
-                .post(BASE_URL+"/add-to-fav", {
+                .post(BASE_URL + "/add-to-fav", {
                   id: user,
                   collectionId: collection,
                 })
@@ -83,7 +83,7 @@ const CustomCollectionItem = ({
 
             if (res) {
               axios
-                .patch(BASE_URL+"/remove-from-fav", {
+                .patch(BASE_URL + "/remove-from-fav", {
                   id: user._id,
                   collectionTitle: collection.title,
                 })
@@ -107,9 +107,11 @@ const CustomCollectionItem = ({
             <p
               role="button"
               onClick={() => {
-                axios.post(BASE_URL+"/find-tag", { tag: el }).then((response) => {
-                  onSelectTag(response.data);
-                });
+                axios
+                  .post(BASE_URL + "/find-tag", { tag: el })
+                  .then((response) => {
+                    onSelectTag(response.data);
+                  });
               }}
               key={i}
               className="d-inline-block mx-1 badge bg-light"
@@ -121,14 +123,14 @@ const CustomCollectionItem = ({
           <span
             className="badge fs-6 d-block rounded-pill bg-danger m-2"
             type="submit"
-            onClick={() => {
-              axios
-                .post(BASE_URL+`/delete_collection`, { id })
+            onClick={async () => {
+              await axios
+                .post(BASE_URL + "/delete_collection", { id })
                 .then(async (res) => {
                   console.log(res.status);
                 })
                 .catch((err) => console.log(err));
-              window.location.reload();
+              // window.location.reload();
             }}
           >
             Delete <AiFillDelete />

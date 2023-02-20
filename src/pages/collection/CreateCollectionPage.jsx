@@ -5,7 +5,7 @@ import axios from "axios";
 import createAnimation from "./abdulboriyCreate.json";
 import Lottie from "react-lottie";
 import { Link, useLocation } from "react-router-dom";
-import {BASE_URL} from "../../extras/frontend_constants";
+import { BASE_URL } from "../../extras/frontend_constants";
 
 const lottieCreate = {
   loop: true,
@@ -27,7 +27,10 @@ function CreateCollectionPage() {
 
   const updateUser = async (collectionId) => {
     await axios
-      .patch("/add-collection-to-user", { userId: user._id, collectionId })
+      .patch(BASE_URL + "/add-collection-to-user", {
+        userId: user._id,
+        collectionId,
+      })
       .then((response) => {
         return true;
       })
@@ -120,10 +123,11 @@ function CreateCollectionPage() {
                     tags: tags.split(" "),
                   };
                   await axios
-                    .post(BASE_URL+"/create_collection", { all })
+                    .post(BASE_URL + "/create_collection", { all })
                     .then(async (res) => {
                       if (res.status === 200 || res.statusText === "OK") {
-                        await updateUser(res.data.newCollection._id);
+                        console.log("ifning success");
+                        updateUser(res.data.newCollection._id);
                         console.log({ colID: res.data.newCollection._id });
                         setIsSaved(true);
                         setId(res.data.newCollection._id);

@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import img from "../../components/CollectionItem/img.jpeg";
 import { storage } from "../../extras/firebase/fire";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import {BASE_URL} from "../../extras/frontend_constants";
+import { BASE_URL } from "../../extras/frontend_constants";
 function ImageUpload() {
   const params = useParams();
   const [imgUrl, setImgUrl] = useState(null);
@@ -35,7 +35,7 @@ function ImageUpload() {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImgUrl(downloadURL);
           axios
-            .post(BASE_URL+"/upload", { downloadURL, id: params.id })
+            .post(BASE_URL + "/upload", { downloadURL, id: params.id })
             .then((response) => {
               console.log(response);
               setImgSaved(true);

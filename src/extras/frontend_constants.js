@@ -17,7 +17,8 @@ const userCollectionHeader = [
   { label: "Role", key: "role" },
 ];
 
-const BASE_URl = "https://rich-tan-sea-urchin-veil.cyclic.app";
+const BASE_URl = "http://collections-api.mrhumble.uz";
+// const BASE_URl = "https://rich-tan-sea-urchin-veil.cyclic.app";
 
 exports.BASE_URL = BASE_URl;
 exports.headersCollections = headersCollections;

@@ -4,7 +4,7 @@ import NavBar from "../../components/navbar/NavBar";
 import axios from "axios";
 import { useEffect } from "react";
 import { useRef } from "react";
-import {BASE_URL} from "../../extras/frontend_constants";
+import { BASE_URL } from "../../extras/frontend_constants";
 const Category = ({ link, collections }) => {
   const data = useLocation().state;
   const [categoryName, setCategoryName] = useState("");
@@ -30,10 +30,10 @@ const Category = ({ link, collections }) => {
             onSubmit={async (e) => {
               e.preventDefault();
               await axios
-                .post(BASE_URL+"/create_category", { name: categoryName })
+                .post(BASE_URL + "/create_category", { name: categoryName })
                 .then(async (res) => {
                   await axios
-                    .post(BASE_URL+"/add-category-to-user", {
+                    .post(BASE_URL + "/add-category-to-user", {
                       CategoryId: res.data.category._id,
                       UserId: data.id._id,
                     })
@@ -67,7 +67,7 @@ const Category = ({ link, collections }) => {
               id="listcat"
               onClick={async () => {
                 await axios
-                  .post(BASE_URL+"/get-category-from-user", {
+                  .post(BASE_URL + "/get-category-from-user", {
                     UserId: data.id._id,
                   })
                   .then((r) => {
@@ -86,7 +86,10 @@ const Category = ({ link, collections }) => {
           {categoryList &&
             categoryList.map((value, index) => {
               return (
-                <div className="list-group list-group-light rounded">
+                <div
+                  key={index}
+                  className="list-group list-group-light rounded"
+                >
                   <ul className="">
                     <Link
                       className="text-decoration-none rounded hover-overlay "

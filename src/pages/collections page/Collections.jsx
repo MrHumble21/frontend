@@ -35,14 +35,16 @@ export function Collections() {
     setIsLoading(true);
     if (!id) {
       setContent(false);
+      console.log("no id provided");
     }
 
     await axios
-      .post(BASE_URL+"/get_user", {
+      .post(BASE_URL + "/get_user", {
         id: id._id,
       })
       .then((res) => {
         setCollectionList(res.data.col);
+
         setIsLoading(false);
       })
       .catch((err) => {
