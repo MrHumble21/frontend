@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import animationData from "./abdulboriyReg.json";
 import Lottie from "react-lottie";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import { BASE_URL } from "../../extras/frontend_constants";
 
@@ -180,7 +180,8 @@ function Registration() {
                     console.log(response);
                     //dadsdsa
                     setIsLoading(false);
-                    window.location.href = "/collections";
+                    return redirect("/collections");
+                    // window.location.href = "/collections";
                   }
                 })
                 .catch((error) => {
