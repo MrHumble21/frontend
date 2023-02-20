@@ -4,7 +4,7 @@ import Lottie from "react-lottie";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
-import {BASE_URL} from "../../extras/frontend_constants";
+import { BASE_URL } from "../../extras/frontend_constants";
 
 const defaultOptions = {
   loop: true,
@@ -25,9 +25,7 @@ function Registration() {
   const [isLoading, setIsLoading] = useState(false);
   return (
     <div className="p-1">
-      {
-        isLoading && <Loader />
-      }
+      {isLoading && <Loader />}
       <h1 className="text-center m-1">Registration page</h1>
       <Lottie options={defaultOptions} height={150} width={150} />
       <div className="container d-flex justify-content-center">
@@ -160,7 +158,7 @@ function Registration() {
           </div>
           <button
             onClick={async () => {
-              setIsLoading(true)
+              setIsLoading(true);
               const user = {
                 fullName,
                 email,
@@ -171,19 +169,22 @@ function Registration() {
               };
 
               await axios
-                .post(BASE_URL+"/create_user", { user })
+                .post(BASE_URL + "/create_user", { user })
                 .then((response) => {
                   if (response.status === 200) {
+                    console.log("if ichi");
                     localStorage.setItem(
                       "userObject",
                       JSON.stringify(response.data.newUser)
                     );
-                    setIsLoading(false)
-                    window.location.href = "/collections";
+                    // const us = localStorage.getItem("userObject");
+                    console.log(response);
+                    setIsLoading(false);
+                    // window.location.href = "/collections";
                   }
                 })
                 .catch((error) => {
-                  setIsLoading(false)
+                  setIsLoading(false);
 
                   console.log(error);
                 });

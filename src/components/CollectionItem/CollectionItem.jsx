@@ -15,7 +15,7 @@ import { MdOutlineHideImage } from "react-icons/md";
 import { AiFillDelete, AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Toast from "../toast/Toast";
-import {BASE_URL} from "../../extras/frontend_constants";
+import { BASE_URL } from "../../extras/frontend_constants";
 export function CollectionItem({
   id,
   image,
@@ -62,7 +62,7 @@ export function CollectionItem({
                 );
                 if (res) {
                   axios
-                    .post(BASE_URL+"/add-to-fav", {
+                    .post(BASE_URL + "/add-to-fav", {
                       id: user,
                       collectionId: collection,
                     })
@@ -98,7 +98,7 @@ export function CollectionItem({
 
               if (res) {
                 axios
-                  .patch(BASE_URL+"/remove-from-fav", {
+                  .patch(BASE_URL + "/remove-from-fav", {
                     id: user._id,
                     collectionTitle: collection.title,
                   })
@@ -140,9 +140,11 @@ export function CollectionItem({
                 <p
                   role="button"
                   onClick={() => {
-                    axios.post(BASE_URL+"/find-tag", { tag: el }).then((response) => {
-                      onSelectTag(response.data);
-                    });
+                    axios
+                      .post(BASE_URL + "/find-tag", { tag: el })
+                      .then((response) => {
+                        onSelectTag(response.data);
+                      });
                   }}
                   key={i}
                   className="d-inline-block mx-1 badge bg-light"
@@ -158,7 +160,7 @@ export function CollectionItem({
             type="submit"
             onClick={() => {
               axios
-                .post(BASE_URL+`/delete_collection`, { id })
+                .post(BASE_URL + `/delete_collection`, { id })
                 .then(async (res) => {
                   console.log(res);
                 })
