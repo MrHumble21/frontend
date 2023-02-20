@@ -168,7 +168,7 @@ function Registration() {
                 confirmPassword,
               };
 
-              await axios
+              axios
                 .post(BASE_URL + "/create_user", { user })
                 .then((response) => {
                   if (response.status === 200) {
@@ -180,8 +180,7 @@ function Registration() {
                     console.log(response);
                     //dadsdsa
                     setIsLoading(false);
-                    return redirect("/collections");
-                    // window.location.href = "/collections";
+                    window.location.href = "/collections";
                   }
                 })
                 .catch((error) => {
