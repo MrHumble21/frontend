@@ -179,6 +179,7 @@ function Registration() {
                     );
                     // const us = localStorage.getItem("userObject");
                     console.log(response);
+                    //dadsdsa
                     setIsLoading(false);
                     // window.location.href = "/collections";
                   }
