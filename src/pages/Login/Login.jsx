@@ -123,11 +123,11 @@ function Login() {
                   See all collections
               </span>
                     </Link>
-                    /
-                    <Link className="mx-2" to="/system-settings">
-              <span style={{textDecoration: "underline"}}>
-                {" "}
-                  <AiFillSetting size={40} />
+/
+                    <Link className="mx-2 text-decoration-none" to="/system-settings">
+              <span style={{textDecoration: "none"}}>
+                System Settings
+                  <AiFillSetting className={'mx-2'} size={25} />
               </span>
                     </Link>
                 </p>
