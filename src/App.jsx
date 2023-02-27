@@ -133,10 +133,10 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/ex",
+    path: "/system-settings",
     element: (
       <>
-        <Experiment />
+        <Settings />
       </>
     ),
   },

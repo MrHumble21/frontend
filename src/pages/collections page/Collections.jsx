@@ -13,7 +13,7 @@ import {
   headersCollections,
   userCollectionHeader,
 } from "../../extras/frontend_constants";
-import { AiOutlineCloudDownload } from "react-icons/ai";
+import {AiFillCloseCircle, AiOutlineCloudDownload} from "react-icons/ai";
 export function Collections() {
   const [collectionList, setCollectionList] = useState("");
   const id = JSON.parse(localStorage.getItem("userObject"));
@@ -78,10 +78,10 @@ export function Collections() {
       {!close && (
         <div
           className="container rounded my-5 p-3"
-          style={{ backgroundColor: "#ECF9FF" }}
+          style={{ backgroundColor: "#F6F6F6" }}
         >
           <div className="d-flex justify-content-between">
-            <h5 className="fs-3 text-black-50 font-weight-bold">Result</h5>{" "}
+            <center><h5 className="fs-4 text-black-50 font-weight-bold text-center">Result</h5>{" "}</center>
             <span
               role="button"
               onClick={() => {
@@ -89,7 +89,7 @@ export function Collections() {
               }}
               className=""
             >
-              ❌
+              <AiFillCloseCircle size={40} color={'red'} />
             </span>
           </div>
 
@@ -104,7 +104,7 @@ export function Collections() {
                     <CustomCollectionItem
                       id={el._id}
                       image={el.image}
-                      title={el.name}
+                      title={el.title}
                       tags={el.tags}
                       description={el.description}
                       link={el._id}
