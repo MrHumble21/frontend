@@ -123,14 +123,19 @@ const CustomCollectionItem = ({
           <span
             className="badge fs-6 d-block rounded-pill bg-danger m-2"
             type="submit"
-            onClick={async () => {
-              await axios
+            onClick={() => {
+              console.log("first");
+              axios
                 .post(BASE_URL + "/delete_collection", { id })
                 .then(async (res) => {
-                  console.log(res.status);
+                  console.log(res);
                 })
                 .catch((err) => console.log(err));
-              // window.location.reload();
+
+              setTimeout(() => {
+                console.log("hello");
+                window.location.reload();
+              }, 1000);
             }}
           >
             Delete <AiFillDelete />
