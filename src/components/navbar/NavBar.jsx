@@ -15,7 +15,7 @@ function NavBar({ category, add, search }) {
   return (
     <>
       {oneuser && (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white">
           <div className="container-fluid">
             <a className="navbar-brand" href="/collections/Profile">
               {oneuser.fullName}

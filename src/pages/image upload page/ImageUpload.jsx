@@ -1,15 +1,24 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import img from "../../components/CollectionItem/img.jpeg";
+import animationData from "./upload.json";
 import { storage } from "../../extras/firebase/fire";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { BASE_URL } from "../../extras/frontend_constants";
+import Lottie from "react-lottie";
 function ImageUpload() {
   const params = useParams();
   const [imgUrl, setImgUrl] = useState(null);
   const [imgSaved, setImgSaved] = useState(false);
   const [progresspercent, setProgresspercent] = useState(0);
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,21 +67,12 @@ function ImageUpload() {
           <form onSubmit={handleSubmit} className="form">
             <div className="container">
               <label htmlFor="upload">
-                <img src={img} style={{ width: "250px" }} alt="" />
+                <Lottie options={defaultOptions} height={310} width={310} />
               </label>
               <input id="upload" className="visually-hidden" type="file" />
               <div className="container">
                 <button type="submit" className="btn btn-primary">
                   Save
-                </button>
-                <button
-                  type=""
-                  className="btn btn-primary mx-2"
-                  onClick={() => {
-                    window.location.href = "/collections";
-                  }}
-                >
-                  Skip
                 </button>
               </div>
             </div>
@@ -105,9 +105,11 @@ function ImageUpload() {
           <div className="mt-5">
             {imgUrl && <img src={imgUrl} alt="uploaded file" height={200} />}
           </div>
-          <Link to="/collections" className="btn btn-primary m-2">
-            Next
-          </Link>
+          {progresspercent == 100 && (
+            <Link to="/collections" className="btn btn-primary m-2">
+              Next
+            </Link>
+          )}
           <br />
         </center>
       </div>

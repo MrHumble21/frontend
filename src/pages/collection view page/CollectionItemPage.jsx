@@ -15,9 +15,10 @@ const CollectionItemPage = () => {
   let x = useLocation().state;
   const [collection, setCollection] = useState();
   const [commentsArray, setCommentsArray] = useState([]);
-
+  const [isPending, setIsPending] = useState(false);
   //get latest update
   const [commentBody, setCommentBody] = useState("");
+  const [likes, setLikes] = useState(0);
   // const collectionId = collection._id;
   const userId = id._id;
   const fetchCollectionByid = async () => {
@@ -146,23 +147,27 @@ const CollectionItemPage = () => {
                   style={{ fontSize: "15px !important" }}
                   className="text-center"
                 >
-                  {collection.likes.length}
+                  {}
                 </p>
               </div>
             </div>
-            <hr />
+
             <div className="container">
               {ReactHtmlParser(collection.ckData)}
             </div>
-            <hr />
+
             <div className="commentContainer container my-3 d-flex justify-content-center">
-              <div className="form-group w-75">
+              <div className="form-group w-100">
                 <label htmlFor="exampleTextarea" className="form-label mt-4">
                   Add a comment
                 </label>
 
                 <textarea
                   className="form-control"
+                  style={{
+                    border: "1px dashed black",
+                    width: "100%",
+                  }}
                   id="exampleTextarea"
                   value={commentBody}
                   onChange={(e) => setCommentBody(e.target.value)}
@@ -174,7 +179,7 @@ const CollectionItemPage = () => {
                       // const res = window.confirm(
                       //   "Are you sure you want to add this comment?"
                       // );
-
+                      setIsPending(true);
                       if (commentBody !== 0) {
                         axios
                           .post(BASE_URL + "/add-comment", {
@@ -184,9 +189,9 @@ const CollectionItemPage = () => {
                           })
                           .then((response) => {
                             console.log(response.data);
-
                             setCommentsArray(response.data.comments);
                             fetchCollectionByid();
+                            setIsPending(false);
                           })
                           .catch((error) => {
                             console.log(error);
@@ -209,6 +214,16 @@ const CollectionItemPage = () => {
             </div>
           </div>
           <div className="commentsWrapper container p-2">
+            {isPending && (
+              <center>
+                <div className="spinner-border text-primary" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </center>
+            )}
+            <br />
+            <br />
+            <br />
             {commentsArray.length > 0 &&
               collection.comments
                 .reverse()
