@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { CollectionItem } from "../../components/CollectionItem/CollectionItem";
 import axios from "axios";
 import NavBar from "../../components/navbar/NavBar";
 import { BsPlusLg } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
-import ReactHtmlParser from "react-html-parser";
 import CustomCollectionItem from "../../components/CollectionItem/CustomCollectionItem";
 import { CSVLink } from "react-csv";
 import {
@@ -13,7 +11,7 @@ import {
   headersCollections,
   userCollectionHeader,
 } from "../../extras/frontend_constants";
-import {AiFillCloseCircle, AiOutlineCloudDownload} from "react-icons/ai";
+import { AiFillCloseCircle, AiOutlineCloudDownload } from "react-icons/ai";
 export function Collections() {
   const [collectionList, setCollectionList] = useState("");
   const id = JSON.parse(localStorage.getItem("userObject"));
@@ -81,7 +79,11 @@ export function Collections() {
           style={{ backgroundColor: "#F6F6F6" }}
         >
           <div className="d-flex justify-content-between">
-            <center><h5 className="fs-4 text-black-50 font-weight-bold text-center">Result</h5>{" "}</center>
+            <center>
+              <h5 className="fs-4 text-black-50 font-weight-bold text-center">
+                Result
+              </h5>{" "}
+            </center>
             <span
               role="button"
               onClick={() => {
@@ -89,7 +91,7 @@ export function Collections() {
               }}
               className=""
             >
-              <AiFillCloseCircle size={40} color={'red'} />
+              <AiFillCloseCircle size={40} color={"red"} />
             </span>
           </div>
 
@@ -120,8 +122,8 @@ export function Collections() {
       )}
       {content ? (
         <>
-          <div className="container m-2 p-2 d-flex">
-            <div className="mx-2">
+          <div className="container d-flex">
+            <div className="mx-1">
               {" "}
               <CSVLink
                 data={dataCollections}
@@ -139,14 +141,14 @@ export function Collections() {
               data={dataUser}
               headers={userCollectionHeader}
               filename={"User.csv"}
-              className="btn btn-primary"
+              className=" btn btn-primary"
               target="_blank"
             >
               Download User Report CSV
               <AiOutlineCloudDownload size={25} />
             </CSVLink>
           </div>
-          <div className="m-3">
+          <div className="m-1">
             <div className="container p-3">
               <div className="row mb-2 ">
                 {collectionList.length > 0 &&
